@@ -1,0 +1,21 @@
+# Celery & Message Broker
+celery[redis]==5.4.0
+redis==5.0.1
+flower==2.0.1
+
+# Database
+psycopg2-binary==2.9.11
+
+# Django (minimal)
+Django==5.2.7
+
+# Utilities
+requests==2.31.0
+python-dotenv==1.0.0
+
+# CSV support
+pandas==2.1.4
+openpyxl==3.1.2
+
+# Serialization
+PyYAML==6.0.3

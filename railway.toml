@@ -1,0 +1,24 @@
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+numReplicas = 1
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 5
+startCommand = "celery -A config.celery_app worker -Q default --loglevel=info"
+
+[[services]]
+name = "celery-worker"
+startCommand = "celery -A config.celery_app worker -Q default --loglevel=info --concurrency=2"
+numReplicas = 1
+
+[[services]]
+name = "celery-beat"
+startCommand = "celery -A config.celery_app beat --loglevel=info"
+numReplicas = 1
+
+[[services]]
+name = "flower"
+startCommand = "celery -A config.celery_app flower --port=$PORT --basic_auth=$FLOWER_BASIC_AUTH"
+numReplicas = 1
